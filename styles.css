@@ -1,3 +1,23 @@
+/* Resource Trio Vertical for Study Resources */
+.resource-trio-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+/* Resource Trio Grid for Study Resources */
+.resource-trio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 900px) {
+    .resource-trio-grid {
+        grid-template-columns: 1fr;
+    }
+}
 * {
     margin: 0;
     padding: 0;
