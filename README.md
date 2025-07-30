@@ -1,4 +1,4 @@
-# 🎓 HS Organizer - High School Academic Organizer
+# 🎓 Adya's HS Organizer - High School Academic Organizer
 
 A comprehensive web application designed specifically for Adya. Features homework tracking, class scheduling, wellness tools, study resources, and gamified learning experiences.
 
