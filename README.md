@@ -28,9 +28,9 @@ A comprehensive web application designed specifically for Adya. Features homewor
 - Point-based reward system for motivation
 
 ## 🎯 **Designed For**
-- High school students taking AP courses (Calculus BC, Chemistry, World History)
-- Students who want to gamify their academic experience
-- Anyone looking for a comprehensive study organization tool
+- Adya, who is taking AP courses (Calculus BC, Chemistry, World History)
+- Kids who want to gamify their academic experience
+- Could be useful to anyone looking for a comprehensive study organization tool
 
 ## 🚀 **Getting Started**
 
