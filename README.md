@@ -1,6 +1,6 @@
-# 🎓 HS Organizer - High School Academic Organizer
+# 🎓 Adya's HS Organizer - High School Academic Organizer
 
-A comprehensive web application designed specifically for high school students taking AP courses. Features homework tracking, class scheduling, wellness tools, study resources, and gamified learning experiences.
+A comprehensive web application designed specifically for Adya. Features homework tracking, class scheduling, wellness tools, study resources, and gamified learning experiences.
 
 ## ✨ Features
 
@@ -28,9 +28,9 @@ A comprehensive web application designed specifically for high school students t
 - Point-based reward system for motivation
 
 ## 🎯 **Designed For**
-- High school students taking AP courses (Calculus BC, Chemistry, World History)
-- Students who want to gamify their academic experience
-- Anyone looking for a comprehensive study organization tool
+- Adya, who is taking AP courses (Calculus BC, Chemistry, World History)
+- Kids who want to gamify their academic experience
+- Could be useful to anyone looking for a comprehensive study organization tool
 
 ## 🚀 **Getting Started**
 
