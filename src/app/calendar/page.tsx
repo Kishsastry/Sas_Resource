@@ -170,7 +170,7 @@ export default function CalendarPage() {
         <div className="min-h-screen bg-slate-950 text-slate-50 font-sans">
             <Sidebar />
 
-            <main className="ml-64 p-8 min-h-screen flex flex-col">
+            <main className="md:ml-64 ml-0 p-4 md:p-8 min-h-screen flex flex-col">
                 <header className="mb-6 flex items-center justify-between">
                     <div>
                         <h1 className="text-3xl font-bold mb-2 flex items-center gap-3">

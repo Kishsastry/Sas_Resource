@@ -94,7 +94,7 @@ export default function ResourcesPage() {
         <div className="min-h-screen bg-slate-950 text-slate-50 font-sans">
             <Sidebar />
 
-            <main className="ml-64 p-8">
+            <main className="md:ml-64 ml-0 p-4 md:p-8">
                 <header className="mb-8">
                     <h1 className="text-3xl font-bold mb-2 flex items-center gap-3">
                         <BookOpen className="w-8 h-8 text-violet-400" />
