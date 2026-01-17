@@ -46,6 +46,16 @@ const resources = [
         ]
     },
     {
+        category: "AP Spanish",
+        icon: "🇪🇸",
+        color: "text-red-400",
+        bgColor: "bg-red-500/10",
+        items: [
+            { title: "Best AP Spanish Resource (Spanish Maestro David)", url: "https://sites.google.com/site/spanishmaestrodavid/ap-spanish-language-and-culture", type: "link" },
+            { title: "AP Spanish - All Units (YouTube Playlist)", url: "https://www.youtube.com/watch?v=1O0CrlozVh0", type: "youtube" },
+        ]
+    },
+    {
         category: "Test Prep",
         icon: "📝",
         color: "text-orange-400",
