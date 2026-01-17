@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAMU CS + Business Admission Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- 
+    Infographic Narrative Plan:
+    1.  Introduction: State the goal (TAMU CS + Business).
+    2.  Section 1: Detail "Step 1: Freshman Admission to General Engineering," focusing on the holistic review components.
+    3.  Section 2: Detail "Step 2: Entry to a Major (ETAM)," visualizing the two paths (Auto-Admit vs. Holistic) with an HTML/CSS flowchart and using a Chart.js Bar Chart to show the factors for the holistic review.
+    4.  Section 3: Explain "Step 3: Adding Business" (minors, double majors).
+    5.  Section 4: Provide the "Summary Table of Admission Criteria" as requested.
+    
+    Visualization Choices:
+    -   Freshman Review Factors: Goal: Organize. Choice: HTML/CSS Card Layout (NO SVG).
+    -   ETAM Process Flow: Goal: Organize. Choice: HTML/CSS Flowchart (NO SVG, NO MERMAID JS).
+    -   ETAM Holistic Factors: Goal: Compare. Choice: Chart.js Horizontal Bar Chart (Canvas-based, NO SVG). Justification: Clearly shows the relative importance of factors for students not meeting auto-admit.
+    -   Summary: Goal: Organize. Choice: HTML Table (NO SVG).
+    
+    Color Palette Selected: "Brilliant Blues" (#0A2E36, #007991, #00A8A8, #98DBC6, #F5F5F5) for a professional, tech-focused, and vibrant feel.
+    
+    Confirmation: No SVG graphics or Mermaid JS are used in this file. All visualizations are rendered using Chart.js (Canvas) or structured HTML/CSS with Tailwind.
+    -->
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F5;
+        }
+        :root {
+            --color-dark-blue: #0A2E36;
+            --color-mid-blue: #007991;
+            --color-teal: #00A8A8;
+            --color-aqua: #98DBC6;
+            --color-light-gray: #F5F5F5;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-box {
+            background-color: white;
+            border: 2px solid var(--color-mid-blue);
+            color: var(--color-dark-blue);
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            min-width: 200px;
+        }
+        .flow-arrow {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--color-mid-blue);
+            transform: rotate(90deg);
+        }
+        @media (min-width: 768px) {
+            .flow-arrow {
+                transform: rotate(0deg);
+            }
+        }
+        .flow-path-box {
+            background-color: #ffffff;
+            border: 2px dashed var(--color-teal);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="w-full min-h-screen" style="background-color: var(--color-light-gray); color: var(--color-dark-blue);">
+        
+        <header class="w-full p-6 md:p-10" style="background-color: var(--color-dark-blue); color: white;">
+            <h1 class="text-3xl md:text-5xl font-extrabold text-center mb-2">The Path to a Computer Science Degree</h1>
+            <h2 class="text-xl md:text-2xl font-light text-center" style="color: var(--color-aqua);">At Texas A&M University (and how to add Business)</h2>
+        </header>
+
+        <main class="max-w-7xl mx-auto p-4 md:p-8 space-y-12">
+
+            <section id="step1" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h3 class="text-3xl font-bold mb-1" style="color: var(--color-mid-blue);">STEP 1: Freshman Admission to General Engineering</h3>
+                <p class="text-lg mb-6">You are not admitted directly to Computer Science as a freshman. You must first be accepted into the College of Engineering as a "General Engineering" major. Admission is holistic, considering multiple factors.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="md:col-span-1 bg-gray-50 rounded-lg p-6 border-l-4" style="border-color: var(--color-teal);">
+                        <h4 class="text-xl font-bold mb-3">For Texas Residents</h4>
+                        <p class="text-6xl font-extrabold" style="color: var(--color-mid-blue);">Top 10%</p>
+                        <p class="text-lg font-semibold mt-2">Automatic University Admission</p>
+                        <p class="mt-2 text-gray-700">If you are in the top 10% of your Texas high school class, you are automatically admitted to TAMU. You must still be reviewed for placement into the competitive College of Engineering.</p>
+                    </div>
+
+                    <div class="md:col-span-2 bg-gray-50 rounded-lg p-6">
+                        <h4 class="text-xl font-bold mb-4">Holistic Review Factors</h4>
+                        <p class="mb-6 text-gray-700">For all other applicants, and for engineering placement, reviewers assess your entire application. There is no minimum GPA or test score.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-4 bg-white rounded-lg shadow-md">
+                                <span class="text-2xl">🎓</span>
+                                <h5 class="text-lg font-semibold mt-1">GPA & Class Rank</h5>
+                                <p class="text-sm text-gray-600">Your academic performance relative to your peers is a primary factor.</p>
+                            </div>
+                            <div class="p-4 bg-white rounded-lg shadow-md">
+                                <span class="text-2xl">📚</span>
+                                <h5 class="text-lg font-semibold mt-1">Course Rigor (AP/IB)</h5>
+                                <p class="text-sm text-gray-600">Success in AP/IB courses (like AP Calculus, Physics, and Computer Science) shows you're ready for college-level work.</p>
+                            </div>
+                            <div class="p-4 bg-white rounded-lg shadow-md">
+                                <span class="text-2xl">📝</span>
+                                <h5 class="text-lg font-semibold mt-1">Application Essays</h5>
+                                <p class="text-sm text-gray-600">Your chance to explain your "why." Why engineering? Why TAMU? What are your goals.</p>
+                            </div>
+                            <div class="p-4 bg-white rounded-lg shadow-md">
+                                <span class="text-2xl">🏆</span>
+                                <h5 class="text-lg font-semibold mt-1">Extracurriculars</h5>
+                                <p class="text-sm text-gray-600">Shows leadership, commitment, and time management. CS-related clubs are a plus!</p>
+                            </div>
+                            <div class="p-4 bg-white rounded-lg shadow-md">
+                                <span class="text-2xl">📊</span>
+                                <h5 class="text-lg font-semibold mt-1">SAT/ACT Scores</h5>
+                                <p class="text-sm text-gray-600">If submitted (check test-optional policy), scores are considered as part of your academic profile.</p>
+                            </div>
+                            <div class="p-4 bg-white rounded-lg shadow-md">
+                                <span class="text-2xl">💡</span>
+                                <h5 class="text-lg font-semibold mt-1">Passion Projects</h5>
+                                <p class="text-sm text-gray-600">Mentioning coding projects or research in your essays can make you stand out.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="step2" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h3 class="text-3xl font-bold mb-1" style="color: var(--color-mid-blue);">STEP 2: Entry to a Major (ETAM)</h3>
+                <p class="text-lg mb-6">After completing 1-2 years of foundational engineering, math, and science courses, you apply for your specific major. This is the most critical step for getting into Computer Science.</p>
+                
+                <h4 class="text-2xl font-bold text-center mb-6">The Two Paths to Computer Science</h4>
+                
+                <div class="flex flex-col md:flex-row items-center justify-center w-full space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="flow-box">General Engineering Student</div>
+                    <div class="flow-arrow">➔</div>
+                    <div class="flow-box">Apply for ETAM</div>
+                    <div class="flow-arrow">➔</div>
+                    
+                    <div class="flex flex-col space-y-4 w-full md:w-auto">
+                        <div class="flow-path-box text-center">
+                            <p class="font-bold text-lg" style="color: var(--color-teal);">PATH 1: AUTO-ADMIT</p>
+                            <p class="text-3xl font-extrabold my-2" style="color: var(--color-teal);">3.75+ GPA</p>
+                            <p class="text-gray-700">Guaranteed your 1st choice major (CS)!</p>
+                        </div>
+                        <div class="flow-path-box text-center">
+                            <p class="font-bold text-lg" style="color: var(--color-mid-blue);">PATH 2: HOLISTIC REVIEW</p>
+                            <p class="text-3xl font-extrabold my-2" style="color: var(--color-mid-blue);">&lt; 3.75 GPA</p>
+                            <p class="text-gray-700">Reviewed based on several factors.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-arrow">➔</div>
+                    <div class="flow-box" style="background-color: var(--color-teal); color: white; border-color: var(--color-teal);">Computer Science Major</div>
+                </div>
+
+                <hr class="my-10 border-t-2 border-gray-200">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h4 class="text-2xl font-bold mb-4">ETAM Holistic Review: Your Profile</h4>
+                        <p class="text-gray-700 mb-4">If your GPA is below 3.75, you are not out! The CS department will review your application holistically. This is where your passion projects and extracurriculars become extremely important.</p>
+                        <ul class="list-disc list-inside space-y-3">
+                            <li class="text-lg"><strong style="color: var(--color-dark-blue);">Cumulative GPA:</strong> Still the most important factor.</li>
+                            <li class="text-lg"><strong style="color: var(--color-dark-blue);">Passion Projects:</strong> Built an app? Competed in a hackathon? Have a GitHub profile? This proves your interest and aptitude beyond classes.</li>
+                            <li class="text-lg"><strong style="color: var(--color-dark-blue);">Research:</strong> Any research with a professor (especially in CS) is highly valued.</li>
+                            <li class="text-lg"><strong style="color: var(--color-dark-blue);">Extracurriculars:</strong> Leadership in CS-related student organizations (e.g., TAMUHack, Aggie Coding Club) is a major plus.</li>
+                            <li class="text-lg"><strong style="color: var(--color-dark-blue);">AP/IB Credits:</strong> Strong grades in foundational courses (Math, Physics, ENGR) are key. AP credits help you start strong.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-bold mb-4 text-center">Impact of ETAM Holistic Factors</h4>
+                        <div class="chart-container">
+                            <canvas id="etamChart"></canvas>
+                        </div>
+                        <p class="text-center text-sm text-gray-600 mt-2">This chart visualizes the relative importance of factors in the ETAM holistic review. GPA remains critical, but passion projects and relevant activities carry significant weight.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="step3" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h3 class="text-3xl font-bold mb-1" style="color: var(--color-mid-blue);">STEP 3: Adding the "And Business"</h3>
+                <p class="text-lg mb-6">Once you are accepted into the Computer Science major, you can officially add a business component. This is not part of your initial admission but is managed after you are an established student.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 rounded-lg p-6 border-l-4" style="border-color: var(--color-teal);">
+                        <h4 class="text-xl font-bold mb-3">Option 1: Business Minor</h4>
+                        <p class="text-lg font-semibold">The most common path.</p>
+                        <p class="mt-2 text-gray-700">The Mays Business School offers a Business Minor open to non-business students. It requires 18 credit hours in foundational business courses (accounting, finance, marketing, management).</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-6 border-l-4" style="border-color: var(--color-mid-blue);">
+                        <h4 class="text-xl font-bold mb-3">Option 2: Double Major</h4>
+                        <p class="text-lg font-semibold">More complex, high-credit load.</p>
+                        <p class="mt-2 text-gray-700">Pursuing a double major in CS and a business field (like Finance) is possible but requires careful planning with academic advisors from both colleges. It will likely take more than 4 years to complete.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="summary" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h3 class="text-3xl font-bold mb-6 text-center" style="color: var(--color-mid-blue);">Summary Table: Admission Criteria</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full min-w-max table-auto text-left">
+                        <thead>
+                            <tr class="border-b" style="border-color: var(--color-teal);">
+                                <th class="p-4 text-lg font-bold" style="color: var(--color-dark-blue);">Criteria</th>
+                                <th class="p-4 text-lg font-bold" style="color: var(--color-dark-blue);">Step 1: Freshman Admission (Holistic)</th>
+                                <th class="p-4 text-lg font-bold" style="color: var(--color-dark-blue);">Step 2: ETAM (CS Admission)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-4 font-semibold">GPA / Class Rank</td>
+                                <td class="p-4">Primary factor. Top 10% (TX) is auto-admit to university.</td>
+                                <td class="p-4">CRITICAL. 3.75+ GPA = Auto-admit to CS. Below 3.75 is holistic review, where GPA is still the #1 factor.</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-4 font-semibold">AP/IB Exam Credentials</td>
+                                <td class="p-4">Shows high "Course Rigor." High scores on AP Calc, Physics, CS A are very positive.</td>
+                                <td class="p-4">High scores can grant credit for foundational courses, helping you achieve a high GPA in your first year.</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-4 font-semibold">Extracurriculars</td>
+                                <td class="p-4">Important. Shows leadership, commitment. (e.g., team captain, club president).</td>
+                                <td class="p-4">Very important for holistic review. Must be CS-FOCUSED (e.g., coding club, hackathons, robotics).</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-4 font-semibold">Passion Projects</td>
+                                <td class="p-4">Good to mention in essays; shows initiative.</td>
+                                <td class="p-4">CRITICAL for holistic review. A strong GitHub, personal website, or app can set you apart.</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-4 font-semibold">Research Papers</td>
+                                <td class="p-4">Rare for high schoolers, but would be extremely impressive.</td>
+                                <td class="p-4">Highly valued for holistic review if done with a professor during your first year.</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-4 font-semibold">Application Essays</td>
+                                <td class="p-4">Required. Must explain your interest in engineering and TAMU.</td>
+                                <td class="p-4">Required for the ETAM application, where you must specifically justify your choice of CS.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        
+        </main>
+        
+        <footer class="text-center p-6 mt-12" style="background-color: var(--color-dark-blue); color: var(--color-aqua);">
+            <p class="text-sm">This infographic is based on publicly available admission information for Texas A&M. All admission policies are subject to change. Always consult the official TAMU Admissions and College of Engineering websites for the most current criteria.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        window.onload = function() {
+            const ctx = document.getElementById('etamChart').getContext('2d');
+            
+            const chartLabels = [
+                'Cumulative GPA', 
+                ['Passion Projects', '& Research'], 
+                ['CS-Related', 'Extracurriculars'], 
+                'Grades in Key Courses',
+                'ETAM Essay'
+            ];
+
+            const etamChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chartLabels,
+                    datasets: [{
+                        label: 'Impact on Holistic Review',
+                        data: [100, 85, 75, 90, 60],
+                        backgroundColor: [
+                            '#007991',
+                            '#00A8A8',
+                            '#00A8A8',
+                            '#007991',
+                            '#98DBC6'
+                        ],
+                        borderColor: '#0A2E36',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: '#0A2E36'
+                            },
+                            grid: {
+                                color: '#e0e0e0'
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                color: '#0A2E36',
+                                font: {
+                                    weight: '600'
+                                }
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: '#0A2E36',
+                            titleFont: {
+                                size: 16
+                            },
+                            bodyFont: {
+                                size: 14
+                            },
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    if (Array.isArray(label)) {
+                                      return label.join(' ');
+                                    } else {
+                                      return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        };
+    </script>
+
+</body>
+</html>

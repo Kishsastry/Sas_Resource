@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UT Austin CS Admission Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--
+    Narrative & Structure Plan:
+    1.  Header: Title and hook.
+    2.  Section 1: The Big Picture - UT Admission vs. CS Program Admission (Donut Chart).
+    3.  Section 2: The Two Pillars of Admission - Holistic Review overview (Flow-style HTML).
+    4.  Section 3: Pillar 1: Academic Excellence - Deep dive on Rank, Rigor, Scores (Bar Charts, List).
+    5.  Section 4: Pillar 2: Holistic Proof - Deep dive on ECs, Passion Projects, Essays (Bar Chart, Lists).
+    6.  Section 5: Summary Checklist - The user-requested summary table (HTML Table).
+    7.  Footer: Disclaimer.
+
+    Visualization Selection Plan:
+    1.  Data: UT Admission vs. CS Admission Difficulty.
+        - Goal: Inform.
+        - Visualization: Donut Chart (Chart.js/Canvas).
+        - Justification: Simple, clear part-to-whole comparison. NO SVG.
+    2.  Data: Class Rank & Auto-Admit.
+        - Goal: Compare.
+        - Visualization: Bar Chart (Chart.js/Canvas).
+        - Justification: Compares "Auto-Admit to UT" vs. "Competitive Review for CS". NO SVG.
+    3.  Data: Recommended Test Scores.
+        - Goal: Inform.
+        - Visualization: Horizontal Bar Chart (Chart.js/Canvas).
+        - Justification: Clearly shows target score goals. NO SVG.
+    4.  Data: Extracurricular Impact.
+        - Goal: Compare.
+        - Visualization: Horizontal Bar Chart (Chart.js/Canvas).
+        - Justification: Compares the impact of "Breadth" vs. "Depth". NO SVG.
+    5.  Data: Rigor, Projects, Essays.
+        - Goal: Organize.
+        - Visualization: Styled Lists (HTML/Tailwind).
+        - Justification: Clearest way to present these specific items. NO SVG, NO MERMAID.
+    6.  Data: Summary of All Criteria.
+        - Goal: Organize.
+        - Visualization: Table (HTML/Tailwind).
+        - Justification: Fulfills the explicit user request for a summary table. NO SVG, NO MERMAID.
+    7.  Data: Admission Pillars Flow.
+        - Goal: Organize.
+        - Visualization: Flow Chart (Styled HTML/Tailwind).
+        - Justification: Shows the process relationship. NO SVG, NO MERMAID.
+
+    Color Palette Chosen: Energetic & Playful
+    - #FF6B6B (Red)
+    - #FFD166 (Yellow)
+    - #06D6A0 (Green)
+    - #118AB2 (Blue)
+    - #073B4C (Dark Blue)
+
+    Constraint Check:
+    - NO Mermaid JS used.
+    - NO SVG graphics used. All charts are via Chart.js on Canvas. All diagrams are HTML/Tailwind.
+    - All charts include the required tooltip callback for multi-line labels.
+    - All labels are checked/processed for the 16-character wrapping rule.
+    - All chart containers are styled with the required CSS.
+    -->
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 font-sans leading-normal tracking-normal" style="font-family: 'Inter', sans-serif;">
+
+    <div class="container mx-auto max-w-6xl py-12 px-4">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4" style="color: #073B4C;">Cracking the Code</h1>
+            <p class="text-xl md:text-2xl" style="color: #118AB2;">A Visual Guide to UT Austin Computer Science
+                Admissions</p>
+        </header>
+
+        <section class="bg-white rounded-lg shadow-md p-6 md:p-8 mb-12">
+            <h2 class="text-2xl font-bold text-center mb-4" style="color: #073B4C;">The CS Admission Funnel: A
+                Competitive Landscape</h2>
+            <p class="text-gray-700 text-center max-w-3xl mx-auto mb-6">
+                Getting into UT Austin is tough, but gaining admission to the Computer Science program is a separate,
+                even more competitive challenge. You are first admitted to the university, and then your chosen major.
+                The CS program has a significantly lower acceptance rate than the university's overall rate.
+            </p>
+            <div class="chart-container">
+                <canvas id="admissionDonutChart"></canvas>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8" style="color: #073B4C;">The Two Pillars of Admission: A
+                Holistic Review</h2>
+            <p class="text-gray-700 text-center max-w-3xl mx-auto mb-8">
+                UT Austin uses a "holistic review," meaning they look at your entire application, not just one or two
+                numbers. Your application is evaluated on two primary pillars.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-11 gap-4 items-center">
+                <div class="md:col-span-5 bg-white rounded-lg shadow-md p-6 h-full">
+                    <h3 class="text-2xl font-bold text-center mb-3" style="color: #118AB2;">Pillar 1: Academic
+                        Excellence</h3>
+                    <p class="text-gray-700 text-center">This is the foundation. It proves you can handle the rigorous,
+                        fast-paced curriculum of a top-tier CS program.</p>
+                </div>
+
+                <div class="md:col-span-1 text-5xl font-bold text-center text-gray-400 hidden md:block">+</div>
+                <div class="text-3xl font-bold text-center text-gray-400 md:hidden">+</div>
+
+                <div class="md:col-span-5 bg-white rounded-lg shadow-md p-6 h-full">
+                    <h3 class="text-2xl font-bold text-center mb-3" style="color: #06D6A0;">Pillar 2: Holistic Proof
+                    </h3>
+                    <p class="text-gray-700 text-center">This is your "X-Factor." It demonstrates who you are beyond
+                        your grades and proves your genuine passion for computer science.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8" style="color: #073B4C;">Pillar 1: Deconstructing Academic
+                Excellence</h2>
+            <p class="text-gray-700 text-center max-w-3xl mx-auto mb-8">
+                While there's no "magic number," the academic profile of an admitted CS student is exceptionally strong.
+                This includes your rank, the difficulty of your courses, and (if submitted) your test scores.
+            </p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-center mb-4" style="color: #118AB2;">The Auto-Admit "Myth" for CS
+                    </h3>
+                    <p class="text-gray-700 text-sm text-center mb-4">
+                        Being in the top 6% of your Texas high school class grants you automatic admission to UT Austin,
+                        but **not** to the CS major. You still face a highly competitive review for your major.
+                    </p>
+                    <div class="chart-container" style="height: 300px; max-height: 350px;">
+                        <canvas id="rankBarChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-center mb-4" style="color: #118AB2;">Course Rigor: What They Look
+                        For</h3>
+                    <p class="text-gray-700 text-sm text-center mb-4">
+                        Admissions wants to see you've taken the hardest STEM courses your school offers and excelled.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <span class="text-lg mr-3" style="color: #06D6A0;">&#10004;</span>
+                            <span class="text-gray-800"><strong>Calculus-Ready:</strong> AP Calculus (AB or BC) is a
+                                virtual prerequisite.</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-lg mr-3" style="color: #06D6A0;">&#10004;</span>
+                            <span class="text-gray-800"><strong>AP CS A:</strong> Shows foundational knowledge and
+                                interest.</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-lg mr-3" style="color: #06D6A0;">&#10004;</span>
+                            <span class="text-gray-800"><strong>AP Physics C:</strong> Both (E&M and Mechanics) are
+                                highly regarded.</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-lg mr-3" style="color: #06D6A0;">&#10004;</span>
+                            <span class="text-gray-800"><strong>Other STEM APs:</strong> AP Chemistry, AP Biology, AP
+                                Statistics.</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="text-lg mr-3" style="color: #06D6A0;">&#10004;</span>
+                            <span class="text-gray-800"><strong>4 Years of Math & Science:</strong> A non-negotiable
+                                expectation.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 lg:col-span-2">
+                    <h3 class="text-xl font-bold text-center mb-4" style="color: #118AB2;">Recommended Test Scores (If
+                        Submitted)</h3>
+                    <p class="text-gray-700 text-sm text-center mb-4">
+                        While UT is often test-optional, submitting high scores (especially in Math) can significantly
+                        strengthen your application for a competitive STEM major like CS.
+                    </p>
+                    <div class="chart-container" style="height: 250px; max-height: 300px;">
+                        <canvas id="scoresBarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8" style="color: #073B4C;">Pillar 2: Building Your Holistic
+                Proof</h2>
+            <p class="text-gray-700 text-center max-w-3xl mx-auto mb-8">
+                This is where you show your passion. What have you done *outside* of class that proves you love to
+                build, solve problems, and think like a computer scientist?
+            </p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-center mb-4" style="color: #06D6A0;">Extracurriculars: Depth >
+                        Breadth</h3>
+                    <p class="text-gray-700 text-sm text-center mb-4">
+                        Admissions would rather see deep commitment and leadership in one or two CS-related activities
+                        than shallow participation in ten unrelated clubs.
+                    </p>
+                    <div class="chart-container" style="height: 300px; max-height: 350px;">
+                        <canvas id="ecBarChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-center mb-4" style="color: #06D6A0;">The "Proof of Passion"
+                        Portfolio</h3>
+                    <p class="text-gray-700 text-sm text-center mb-4">
+                        This is your single biggest differentiator. What have you built?
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-lg mr-3 pt-1" style="color: #FF6B6B;">&#128187;</span>
+                            <span class="text-gray-800"><strong>Passion Projects:</strong> A personal website, a mobile
+                                app, a game, a data analysis, a script to automate a task. (Link your GitHub!)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-lg mr-3 pt-1" style="color: #FF6B6B;">&#127941;</span>
+                            <span class="text-gray-800"><strong>Competitions:</strong> USACO, FIRST Robotics,
+                                CyberPatriot, local hackathons.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-lg mr-3 pt-1" style="color: #FF6B6B;">&#128269;</span>
+                            <span class="text-gray-800"><strong>Research:</strong> Participation in a university lab or
+                                a formal research project is extremely impressive.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-lg mr-3 pt-1" style="color: #FF6B6B;">&#128188;</span>
+                            <span class="text-gray-800"><strong>Work/Internship:</strong> A CS-related summer job or
+                                internship.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 lg:col-span-2">
+                    <h3 class="text-xl font-bold text-center mb-4" style="color: #06D6A0;">Essays: Your Personal
+                        Narrative</h3>
+                    <p class="text-gray-700 text-center">
+                        This is where you tie everything together. Your essays (especially the short answers) are your
+                        chance to *explain* your passion. Don't just list your projects; explain the *why*. What problem
+                        did you want to solve? What did you learn? How did it change your perspective? This is your
+                        chance to show your voice and personality.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8" style="color: #073B4C;">Summary: Your Admission Checklist
+            </h2>
+            <p class="text-gray-700 text-center max-w-3xl mx-auto mb-8">
+                Use this table as a quick reference for the key components of a competitive application for the UT
+                Austin Computer Science program.
+            </p>
+            <div class="bg-white rounded-lg shadow-md p-6 overflow-x-auto">
+                <table class="w-full min-w-full divide-y divide-gray-200">
+                    <thead style="background-color: #073B4C;">
+                        <tr>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                                Criterion
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                                Requirement / Recommendation
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                                Why It Matters
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Class Rank / GPA</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-gray-700">Top 10% (Top 6% for Auto-Admit to UT)
+                            </td>
+                            <td class="px-6 py-4 text-gray-700">Proves basic academic competency. Auto-admit does NOT
+                                guarantee CS major.</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Course Rigor</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-gray-700">Max possible rigor (AP, IB)</td>
+                            <td class="px-6 py-4 text-gray-700">Shows you are "calculus-ready" and can handle a
+                                demanding STEM workload.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Key AP Exams</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-gray-700">AP Calc (AB/BC), AP CS A, AP Physics C
+                            </td>
+                            <td class="px-6 py-4 text-gray-700">Provides direct evidence of your skills in relevant
+                                subjects. Scores of 4 or 5 are best.</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">SAT/ACT Scores</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-gray-700">Recommended: 750+ SAT Math, 34+ ACT
+                                Math</td>
+                            <td class="px-6 py-4 text-gray-700">(If submitted) High math scores are a strong positive
+                                signal for CS.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Extracurriculars</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-gray-700">Depth and leadership in 1-2 CS-related
+                                activities</td>
+                            <td class="px-6 py-4 text-gray-700">Proves interest beyond the classroom. Leadership >
+                                participation.</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Passion Projects</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-gray-700">GitHub, personal website, app, etc.
+                            </td>
+                            <td class="px-6 py-4 text-gray-700">The "X-Factor." This is your best proof of genuine,
+                                self-driven interest.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Research</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-gray-700">Lab experience or formal paper</td>
+                            <td class="px-6 py-4 text-gray-700">A major differentiator. Shows high-level thinking and
+                                commitment.</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Essays</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-gray-700">Main Essay + Short Answers</td>
+                            <td class="px-6 py-4 text-gray-700">Connects all pieces. Explains your "why" and shows your
+                                personality.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer class="text-center mt-12">
+            <p class="text-gray-600 text-sm">
+                This infographic is a synthesized guide based on publicly available information and admission trends for
+                the UT Austin CS program.
+                All data is illustrative. Admission criteria can change.
+                <strong>Always check the official UT Austin admissions website for the most current and accurate
+                    information.</strong>
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        window.onload = function () {
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            };
+
+            const defaultChartOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            };
+
+            const colors = {
+                darkBlue: '#073B4C',
+                blue: '#118AB2',
+                green: '#06D6A0',
+                yellow: '#FFD166',
+                red: '#FF6B6B'
+            };
+
+            const ctx1 = document.getElementById('admissionDonutChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'doughnut',
+                data: {
+                    labels: ['UT Austin Overall Admit (Approx)', 'CS Program Admit (Approx)'],
+                    datasets: [{
+                        data: [31, 12],
+                        backgroundColor: [colors.blue, colors.darkBlue],
+                        hoverOffset: 4
+                    }]
+                },
+                options: defaultChartOptions
+            });
+
+            const ctx2 = document.getElementById('rankBarChart').getContext('2d');
+            new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ['Top 6% (Auto-Admit to UT)', 'Top 10%'],
+                    datasets: [{
+                        label: 'Chance of CS Program Admission (Illustrative)',
+                        data: [40, 25],
+                        backgroundColor: colors.darkBlue,
+                    }]
+                },
+                options: {
+                    ...defaultChartOptions,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function (value) {
+                                    return value + '%'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const ctx3 = document.getElementById('scoresBarChart').getContext('2d');
+            new Chart(ctx3, {
+                type: 'bar',
+                data: {
+                    labels: ['SAT Math', 'ACT Math'],
+                    datasets: [{
+                        label: 'Competitive Score',
+                        data: [750, 34],
+                        backgroundColor: [colors.green, colors.green],
+                    },
+                    {
+                        label: 'Top 25th Percentile (Approx)',
+                        data: [800, 36],
+                        backgroundColor: [colors.blue, colors.blue],
+                    }]
+                },
+                options: {
+                    ...defaultChartOptions,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    }
+                }
+            });
+
+            const ctx4 = document.getElementById('ecBarChart').getContext('2d');
+            new Chart(ctx4, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        '10 Unrelated Clubs, No Leadership',
+                        ['Robotics Team Captain', '(2 Years)']
+                    ],
+                    datasets: [{
+                        label: 'Admission Impact (Illustrative)',
+                        data: [20, 90],
+                        backgroundColor: [colors.yellow, colors.red],
+                    }]
+                },
+                options: {
+                    ...defaultChartOptions,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+
+</html>

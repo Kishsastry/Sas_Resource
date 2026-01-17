@@ -1,0 +1,55 @@
+
+> temp_app@0.1.0 lint
+> eslint
+
+
+C:\Users\kishsastry\OneDrive - Microsoft\Documents\GitHub\Projects\highschool_organizer\temp_app\src\app\ai-tools\page.tsx
+  12:9  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\kishsastry\OneDrive - Microsoft\Documents\GitHub\Projects\highschool_organizer\temp_app\src\app\calendar\page.tsx
+   7:82  warning  'Clock' is defined but never used                                                               @typescript-eslint/no-unused-vars
+  31:9   warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps')
+
+C:\Users\kishsastry\OneDrive - Microsoft\Documents\GitHub\Projects\highschool_organizer\temp_app\src\app\homework\page.tsx
+  28:9  warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps')
+
+C:\Users\kishsastry\OneDrive - Microsoft\Documents\GitHub\Projects\highschool_organizer\temp_app\src\app\wellness\page.tsx
+   27:24   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\kishsastry\OneDrive - Microsoft\Documents\GitHub\Projects\highschool_organizer\temp_app\src\app\wellness\page.tsx:27:24
+  25 |         // Load saved mood
+  26 |         const savedMood = localStorage.getItem("daily_mood");
+> 27 |         if (savedMood) setMood(savedMood);
+     |                        ^^^^^^^ Avoid calling setState() directly within an effect
+  28 |
+  29 |         // Random quote
+  30 |         setQuote(QUOTES[Math.floor(Math.random() * QUOTES.length)]);  react-hooks/set-state-in-effect
+   52:13   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\kishsastry\OneDrive - Microsoft\Documents\GitHub\Projects\highschool_organizer\temp_app\src\app\wellness\page.tsx:52:13
+  50 |             }, 1000);
+  51 |         } else {
+> 52 |             setTimer(0);
+     |             ^^^^^^^^ Avoid calling setState() directly within an effect
+  53 |             setBreathPhase("Inhale");
+  54 |         }
+  55 |         return () => clearInterval(interval);                                                                               react-hooks/set-state-in-effect
+   99:105  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          react/no-unescaped-entities
+  109:29   error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          react/no-unescaped-entities
+  109:42   error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          react/no-unescaped-entities
+
+✖ 9 problems (6 errors, 3 warnings)
+  0 errors and 2 warnings potentially fixable with the `--fix` option.
+

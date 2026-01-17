@@ -36,9 +36,9 @@ const quotes = [
     { text: "Don't watch the clock; do what it does. Keep going.", author: "Sam Levenson" },
     { text: "Success is the sum of small efforts repeated day in and day out.", author: "Robert Collier" },
     { text: "The expert in anything was once a beginner.", author: "Helen Hayes" },
-    { text: "Your limitation—it's only your imagination.", author: "Unknown" },
-    { text: "Great things never come from comfort zones.", author: "Unknown" },
-    { text: "Dream it. Wish it. Do it.", author: "Unknown" }
+    { text: "Your limitation—it's only your imagination.", author: "Kish-AI" },
+    { text: "Great things never come from comfort zones.", author: "Kish-AI" },
+    { text: "Dream it. Wish it. Do it.", author: "Kish-AI" }
 ];
 
 // Initialize App
